@@ -1,5 +1,33 @@
 .card {
-  border: 1px dashed white;
+  border: 1px dashed black;
   padding: 10px;
   margin-bottom: 10px;
+  text-align: center;
+}
+
+.buttons {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.text {
+  font-size: 1.5rem;
+  font-weight: normal;
+
+  &.purple {
+    color: purple;
+  }
+
+  &.pink {
+    color: #fb00ff;
+  }
+
+  &.chocolate {
+    color: chocolate;
+  }
+}
+
+.dataSection {
+  margin-top: 20px;
 }

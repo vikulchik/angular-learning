@@ -1,14 +1,46 @@
 <div class="card">
-  <h2>{{title}}</h2>
-  <p>
-    {{text}}
+  <h2 [ngStyle]="{
+    color: card.title.length < 14  ? 'green' : 'red',
+    fontWeight: card.title.length < 16  ? '400' : '600'
+  }">
+   {{index}} {{card.title}}
+  </h2>
+  <img class="image" [src]="imgUrl" alt="#">
+<!--  <p class="text" [ngClass]="{-->
+<!--    purple: textColor === 'purple',-->
+<!--    pink: textColor === 'lightpink',-->
+<!--    chocolate: textColor === 'chocolate'-->
+<!--  }">{{text}}</p>-->
+
+  <p class="text"
+     [class.pink]="textColor === 'lightpink'"
+     [class.purple]="textColor === 'purple'"
+     [class.chocolate]="textColor === 'chocolate'"
+  >
+    {{card.text}}
   </p>
-  <p>{{getInfo()}}</p>
-  <div>
-    <img [src]="imgUrl" alt="#">
+  <div class="buttons">
+    <button (click)="textColor = 'purple'">Set purple</button>
+    <button (click)="textColor = 'lightpink'">Set pink</button>
+    <button (click)="textColor = 'chocolate'">Set chocolate</button>
   </div>
-  <!--  <strong>Number: {{number}}</strong>-->
-  <!--  <br>-->
-  <!--  <em>{{array}}</em>-->
-  <!--  <pre>{{obj | json}}</pre>-->
+  <!--  <p>{{getInfo()}}</p>-->
+  <div class="buttons">
+    <button (click)="changeTitle()">Change title</button>
+    <button (click)="card.title = 'Inline title'">Change title inline</button>
+    <button [disabled]="disabled">Enable</button>
+  </div>
+  <!--    <div>-->
+  <!--      <input type="text" #myInput (input)="inputHandler(myInput.value)" [value]="title">-->
+  <!--    </div>-->
+  <!--    <strong>Number: {{number}}</strong>-->
+  <!--    <br>-->
+  <!--    <em>{{array}}</em>-->
+  <!--    <pre>{{obj | json}}</pre>-->
+  <div>
+    <input type="text" [(ngModel)]="card.title" (ngModelChange)="changeHandler()">
+  </div>
+  <div class="dataSection">
+    <strong>{{cardDate | date:'dd MMMM yyyy HH:mm:ss'}}</strong>
+  </div>
 </div>

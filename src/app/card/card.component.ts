@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Card} from '../app.component';
 
 @Component({
   selector: 'app-card',
@@ -8,10 +9,15 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class CardComponent implements OnInit {
+
+  @Input() card!: Card;
+  @Input() index!: number;
+  cardDate: Date = new Date();
   title = 'My card title';
-  text = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium adipisci amet aperiam culpa distinctio
-    dolor dolorum eaque, earum est fugiat impedit incidunt libero maxime odit officia repudiandae similique ut vero!`;
-  imgUrl = 'https://angular.io/assets/images/logos/angular/angular.png';
+  text = 'My sample text';
+  disabled = false;
+  textColor!: string;
+  imgUrl = 'https://picsum.photos/300/300?grayscale';
   number = 77;
   array = [1, 1, 2, 3, 5, 8, 13];
   obj = {
@@ -22,13 +28,27 @@ export class CardComponent implements OnInit {
     }
   };
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     setTimeout(() => {
-      this.imgUrl = 'https://image.flaticon.com/icons/png/128/1260/1260667.png';
+      this.imgUrl = 'https://picsum.photos/300/300';
+      this.disabled = true;
     }, 3000);
+  }
+
+  changeTitle(): void {
+    this.card.title = 'Title has been changed';
   }
 
   getInfo(): string {
     return 'This is my info';
+  }
+
+  inputHandler(value: any): void{
+    // const value = event.target.value;
+    this.card.title = value;
+  }
+
+  changeHandler(): void {
+    console.log(this.card.title);
   }
 }
